@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 from settings import list_company
+from module1 import *
 #create by Tokarev Sergey
 app = Flask(__name__)
 api = Api(app)
@@ -59,4 +60,4 @@ def get_all():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
