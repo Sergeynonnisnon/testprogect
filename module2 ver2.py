@@ -14,13 +14,7 @@ def create_new_db(ticker):
     con.close()
 create_new_db(ticker)
 
-def timeit(func,*args,**kwargs):
-    start = time.time()
-    func(*args, **kwargs)
-    print(time.time()-start)
-    return func
 
-@timeit
 def get_history_data_full(ticker):
     create_new_db(ticker)
 
@@ -49,10 +43,11 @@ def get_history_data_full(ticker):
     cur = conn.cursor()
 
     for i in range(len(timestamps)):
-        print('work')
 
-        data.append((timestamps[i], opens[i], highs[i], lows[i], closes[i], adjclose[i], volumes[i]))
-        max_hist_date = cur.execute(f'''INSERT INTO {ticker} VALUES(?,?,?,?,?,?)',
-                                i[0]''', (timestamps[i], opens[i], highs[i], lows[i], closes[i], adjclose[i], volumes[i]))
+
+        #data.append((timestamps[i], opens[i], highs[i], lows[i], closes[i], adjclose[i], volumes[i]))
+
+        max_hist_date = cur.execute(f'''INSERT INTO {ticker} VALUES(?,?,?,?,?,?,?)''', (timestamps[i], opens[i], highs[i], lows[i], closes[i], adjclose[i], volumes[i]))
         conn.commit()
     cur.close()
+get_history_data_full(ticker)
