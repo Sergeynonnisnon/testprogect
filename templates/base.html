@@ -6,8 +6,11 @@
 </head>
 <body>
 <h1>Distant reading historical data from yahho finanse</h1>
+<br>
 <p> methods : GET (api/get_all, api/ticket)</p>
+<br>
 <p> get_all: get all records in db</p>
+<br>
 <p> api/{name_ticket:[[
     Date
 	,Open
@@ -18,6 +21,8 @@
 	,Dividends
 	,Stock Splits ],[]...},name_ticket:[...]}</p>
 <p> ticket: get history marcet data from current ticket</p>
+<br>
+
 <p>api/{name_ticket:[[
     Date
 	,Open
@@ -27,5 +32,11 @@
 	,Volume
 	,Dividends
 	,Stock Splits ],[]...}}</p>
+<br>
+<p>POST</p>
+<br>
+<p>api/create_db/ticker:create new db on ticker.db by ticker</p>
+<p>/api/upgrade/ticker:upgrade exist db on ticker.bd by ticker</p>
+
 </body>
 </html>

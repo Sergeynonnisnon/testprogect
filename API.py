@@ -1,10 +1,12 @@
 from flask import Flask, render_template, jsonify
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
-import sqlite3
+from module1 import create_data_from_dframe
 from settings import list_company
 from module1 import *
-#create by Tokarev Sergey
+
+#create by Tokarev Sergey nonnisnon@gmail.com
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -59,5 +61,17 @@ def get_all():
     return jsonify(all_data)
 
 
+@app.route('/api/create_db/<ticker>', methods=['POST'])
+def create_db_on_new_ticker(ticker):
+    create_data_from_dframe(ticker)
+    return "200"
+
+
+@app.route('/api/upgrade/<ticker>', methods=['POST'])
+def upgrade_db_on_new_ticker(ticker):
+    upgrade_ticker(ticker)
+    return "200"
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

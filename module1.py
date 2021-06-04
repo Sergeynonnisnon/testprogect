@@ -17,7 +17,7 @@ def create_data_from_dframe(ticker):
     :param ticker: short name of the company symbol
     :return: None, console print
     """
-
+    engine = create_engine('sqlite:///ticker.db')
     data_yf = yf.Ticker(ticker)
     # get historical market data
     hist = data_yf.history(period="max")
@@ -59,6 +59,7 @@ def upgrade_ticker(ticker):
     SELECT MAX(Date) from [{ticker}.db] ''').fetchall()
 
     new_data_in_frame = hist.loc[hist.index > max_hist_date[0][0]]
+    engine = create_engine('sqlite:///ticker.db')
     new_data_in_frame.to_sql(name=f'{ticker}.db',
             con=engine,
             schema=None,
