@@ -8,7 +8,7 @@ from module1 import *
 #create by Tokarev Sergey nonnisnon@gmail.com
 
 app = Flask(__name__)
-api = Api(app)
+
 
 db = SQLAlchemy(app)
 
@@ -63,8 +63,11 @@ def get_all():
 
 @app.route('/api/create_db/<ticker>', methods=['POST'])
 def create_db_on_new_ticker(ticker):
-    create_data_from_dframe(ticker)
-    return "200"
+    try:
+        create_data_from_dframe(ticker)
+        return "200, Done!"
+    except:
+        return '400, BD alredy exist'
 
 
 @app.route('/api/upgrade/<ticker>', methods=['POST'])

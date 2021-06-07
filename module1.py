@@ -5,7 +5,7 @@ import sqlite3
 import yfinance as yf
 import sqlite3
 from settings import list_company
-from sqlalchemy import engine,create_engine
+from sqlalchemy import create_engine
 
 engine = create_engine('sqlite:///ticker.db')
 
