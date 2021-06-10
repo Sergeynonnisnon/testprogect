@@ -9,7 +9,7 @@ response = requests.request(method="GET", url=BASE + '/api/get_all')
 print(response)
 
 # create ticker bd
-response = requests.request(method="POST", url=BASE + '/api/create_db/AAAPL', params='AAPL')
+response = requests.request(method="POST", url=BASE + '/api/create_db/AAPL', params='AAPL')
 print(response)
 # upgrade ticker bd
 response = requests.request(method="POST", url=BASE + '/api/upgrade/AAPL', params='AAPL')

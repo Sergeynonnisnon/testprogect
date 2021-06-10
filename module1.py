@@ -27,9 +27,9 @@ def create_data_from_dframe(ticker):
                     schema=None,
                     if_exists='fail',
                     index=True, index_label=None, chunksize=None, dtype=None, method=None)
-        return print('add')
+        return 'add'
     except ValueError:
-        return print('data alredy in db')
+        return 'data alredy in db'
 
 
 def post_all_ticker(list_company):
@@ -61,10 +61,13 @@ def upgrade_ticker(ticker):
     cur.close()
     new_data_in_frame = hist.loc[hist.index > max_hist_date[0][0]]
     engine = create_engine('sqlite:///ticker.db')
-    new_data_in_frame.to_sql(name=f'{ticker}.db',
+    try:
+        new_data_in_frame.to_sql(name=f'{ticker}.db',
             con=engine,
             schema=None,
             if_exists='append',
             index=True, index_label=None, chunksize=None, dtype=None, method=None)
+    except:
+        return 'somesing wrong'
 
 
